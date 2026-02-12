@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anisha Community Solution | Tirupattur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #4CAF50;
+            --accent: #FF9800;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #e9ecef;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: var(--primary);
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+        }
+
+        .nav-btn:hover {
+            background-color: #1e4480;
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e4480 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e68900;
+            color: white;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Maintenance Form */
+        .maintenance-form {
+            padding: 4rem 0;
+            background-color: var(--gray);
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Status Tracker */
+        .status-tracker {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .tracker-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .status-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .status-count {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .status-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .requests-list {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .request-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .request-item:last-child {
+            border-bottom: none;
+        }
+
+        .request-id {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .request-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-in-progress {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: var(--shadow);
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s;
+            }
+
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav li {
+                margin-bottom: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-tools logo-icon"></i>
+                <div class="logo-text">
+                    <h1>Anisha Community Solution</h1>
+                    <p>Tirupattur's Premier Maintenance Service</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Services</a></li>
+                    <li><a href="#request">Maintenance Request</a></li>
+                    <li><a href="#tracker">Track Status</a></li>
+                    <li><a href="#contact" class="nav-btn">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Professional Community Maintenance Solutions</h2>
+            <p>Anisha Community Solution provides comprehensive maintenance services for residential and commercial communities in Tirupattur. We ensure timely, efficient, and high-quality solutions for all your maintenance needs.</p>
+            <a href="#request" class="btn">Submit Maintenance Request</a>
+        </div>
+    </section>
+
+    <!-- Features/Services -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Comprehensive Services</h2>
+                <p>We offer a wide range of maintenance services tailored to community needs in Tirupattur.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-wrench feature-icon"></i>
+                    <h3>Plumbing & Electrical</h3>
+                    <p>Expert plumbing and electrical repair services for residential and commercial properties.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-paint-roller feature-icon"></i>
+                    <h3>Painting & Renovation</h3>
+                    <p>Interior and exterior painting along with complete renovation services.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-snowflake feature-icon"></i>
+                    <h3>AC & Appliance Repair</h3>
+                    <p>Professional repair and maintenance for AC units and household appliances.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-building feature-icon"></i>
+                    <h3>Structural Maintenance</h3>
+                    <p>Comprehensive structural repairs and preventive maintenance for buildings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maintenance Request Form -->
+    <section class="maintenance-form" id="request">
+        <div class="container">
+            <div class="section-title">
+                <h2>Submit Maintenance Request</h2>
+                <p>Fill out the form below to request maintenance services. We'll respond within 24 hours.</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="maintenanceRequestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="property">Property Type *</label>
+                            <select id="property" required>
+                                <option value="">Select Property Type</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="house">Independent House</option>
+                                <option value="commercial">Commercial Building</option>
+                                <option value="community">Community Area</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Full Address *</label>
+                        <input type="text" id="address" placeholder="Street, Area, Tirupattur" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service">Service Required *</label>
+                            <select id="service" required>
+                                <option value="">Select Service</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="painting">Painting</option>
+                                <option value="ac">AC Repair</option>
+                                <option value="appliance">Appliance Repair</option>
+                                <option value="structural">Structural</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="urgency">Urgency Level *</label>
+                            <select id="urgency" required>
+                                <option value="">Select Urgency</option>
+                                <option value="low">Low (Within a week)</option>
+                                <option value="medium">Medium (Within 3 days)</option>
+                                <option value="high">High (Within 24 hours)</option>
+                                <option value="emergency">Emergency (Immediate)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Issue Description *</label>
+                        <textarea id="description" placeholder="Please describe the issue in detail..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Submit Maintenance Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Tracker -->
+    <section class="status-tracker" id="tracker">
+        <div class="container">
+            <div class="section-title">
+                <h2>Track Request Status</h2>
+                <p>Monitor the status of your maintenance requests in real-time.</p>
+            </div>
+            
+            <div class="tracker-container">
+                <div class="status-cards">
+                    <div class="status-card">
+                        <div class="status-count" id="pendingCount">12</div>
+                        <div class="status-label">Pending Requests</div>
+                    </div>
+                    
+                    <div class="status-card">
+                        <div class="status-count" id="inProgressCount">8</div>
+                        <div class="status-label">In Progress</div>
+                    </div>
+                    
+                    <div class="status-card">
+                        <div class="status-count" id="completedCount">34</div>
+                        <div class="status-label">Completed</div>
+                    </div>
+                    
+                    <div class="status-card">
+                        <div class="status-count" id="totalCount">54</div>
+                        <div class="status-label">Total Requests</div>
+                    </div>
+                </div>
+                
+                <div class="requests-list">
+                    <h3>Recent Requests</h3>
+                    <div id="requestsContainer">
+                        <!-- Requests will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Anisha Community Solution</h3>
+                    <p>Professional maintenance solutions for communities in Tirupattur. We provide reliable, timely, and high-quality services for all your maintenance needs.</p>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>123 Main Street, Tirupattur, Tamil Nadu 635601</p>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@anishacommunity.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#features">Our Services</a>
+                    <a href="#request">Submit Request</a>
+                    <a href="#tracker">Track Status</a>
+                    <a href="#">About Us</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <a href="#">Plumbing Services</a>
+                    <a href="#">Electrical Works</a>
+                    <a href="#">Painting & Renovation</a>
+                    <a href="#">AC & Appliance Repair</a>
+                    <a href="#">Structural Maintenance</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 8:00 PM</p>
+                    <p>Saturday: 9:00 AM - 6:00 PM</p>
+                    <p>Sunday: 10:00 AM - 4:00 PM</p>
+                    <p>Emergency Services: 24/7 Available</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Anisha Community Solution, Tirupattur. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Form submission
+        const maintenanceForm = document.getElementById('maintenanceRequestForm');
+        
+        maintenanceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const service = document.getElementById('service').value;
+            
+            // Generate a random request ID
+            const requestId = 'ACS-' + Math.floor(1000 + Math.random() * 9000);
+            
+            // Show success message
+            alert(`Thank you ${name}! Your ${service} request has been submitted.\nYour Request ID: ${requestId}\nWe will contact you within 24 hours.`);
+            
+            // Reset form
+            maintenanceForm.reset();
+            
+            // Update request counts
+            updateRequestCounts();
+            
+            // Add request to the list
+            addRequestToList(requestId, service, 'pending');
+        });
+        
+        // Sample request data
+        const sampleRequests = [
+            {id: 'ACS-4521', service: 'Plumbing Repair', date: '2023-10-15', status: 'completed'},
+            {id: 'ACS-4522', service: 'Electrical Wiring', date: '2023-10-18', status: 'in-progress'},
+            {id: 'ACS-4523', service: 'AC Service', date: '2023-10-20', status: 'pending'},
+            {id: 'ACS-4524', service: 'Painting Work', date: '2023-10-12', status: 'completed'},
+            {id: 'ACS-4525', service: 'Appliance Repair', date: '2023-10-22', status: 'in-progress'}
+        ];
+        
+        // Initialize request list
+        function initializeRequests() {
+            const requestsContainer = document.getElementById('requestsContainer');
+            requestsContainer.innerHTML = '';
+            
+            sampleRequests.forEach(request => {
+                addRequestToList(request.id, request.service, request.status, request.date);
+            });
+            
+            updateRequestCounts();
+        }
+        
+        // Add request to the list
+        function addRequestToList(id, service, status, date = null) {
+            const requestsContainer = document.getElementById('requestsContainer');
+            
+            // Format date or use current date
+            const requestDate = date ? new Date(date) : new Date();
+            const formattedDate = requestDate.toLocaleDateString('en-IN', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+            
+            // Determine status class and text
+            let statusClass, statusText;
+            switch(status) {
+                case 'pending':
+                    statusClass = 'status-pending';
+                    statusText = 'Pending';
+                    break;
+                case 'in-progress':
+                    statusClass = 'status-in-progress';
+                    statusText = 'In Progress';
+                    break;
+                case 'completed':
+                    statusClass = 'status-completed';
+                    statusText = 'Completed';
+                    break;
+                default:
+                    statusClass = 'status-pending';
+                    statusText = 'Pending';
+            }
+            
+            // Create request item
+            const requestItem = document.createElement('div');
+            requestItem.className = 'request-item';
+            requestItem.innerHTML = `
+                <div>
+                    <div class="request-id">${id}</div>
+                    <div>${service}</div>
+                    <small>Submitted: ${formattedDate}</small>
+                </div>
+                <div class="request-status ${statusClass}">${statusText}</div>
+            `;
+            
+            // Add to the beginning of the list
+            requestsContainer.insertBefore(requestItem, requestsContainer.firstChild);
+        }
+        
+        // Update request counts
+        function updateRequestCounts() {
+            // In a real app, these would come from an API
+            // For demo, we'll use random numbers that update
+            const pendingCount = document.getElementById('pendingCount');
+            const inProgressCount = document.getElementById('inProgressCount');
+            const completedCount = document.getElementById('completedCount');
+            const totalCount = document.getElementById('totalCount');
+            
+            // Get current values
+            let pending = parseInt(pendingCount.textContent);
+            let inProgress = parseInt(inProgressCount.textContent);
+            let completed = parseInt(completedCount.textContent);
+            
+            // Simulate some changes
+            pending = Math.max(0, pending + Math.floor(Math.random() * 3) - 1);
+            inProgress = Math.max(0, inProgress + Math.floor(Math.random() * 3) - 1);
+            completed += 1; // Increment completed by 1
+            
+            const total = pending + inProgress + completed;
+            
+            // Update the display
+            pendingCount.textContent = pending;
+            inProgressCount.textContent = inProgress;
+            completedCount.textContent = completed;
+            totalCount.textContent = total;
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeRequests();
+            
+            // Update counts every 30 seconds for demo purposes
+            setInterval(updateRequestCounts, 30000);
+        });
+    </script>
+</body>
+</html>
